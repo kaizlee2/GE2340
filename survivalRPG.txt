@@ -1,0 +1,381 @@
+'use strict';
+const start = (say, sendButton) => {
+    say('Day 1 Morning🌅\n\nYou have woken up on a deserted island and not a single person to be seen. You recalled the events that happened late last night that a raging storm hits the ship you were on and you accidentally fell into the sea. You thought to yourself that you are were lucky to be washed up ashore on this deserted island alive. You believed that you are not far from where you fell from the ship since the local fruits and faunas are similar to the place you are going. You also deduced that the ship will send a rescue party 3 days from now, hence you have 3 days to survive.  \n\nNow what will you do?' ).then(() => {sendButton('A: Walk around and find something useful \nB: Just sit and chill because you are tired', [{title: 'A', payload: '1a'},{title: 'B', payload: '1b'}]);
+    });
+
+};
+
+const state = (payload, say, sendButton) => {
+
+
+//*************Day 1 Morning*************
+    
+	    if (payload === '1a') {	        
+                  say('You found some coconut underneath the coconut tree. You know that the coconut can be use to recover your hydration').then(() => {sendButton('A: Continue to search around? \nB: Open the coconut', [{title: 'A', payload: '2a'}, {title: 'B', payload: '2b'}]);
+                      
+                  });
+    }
+    
+    	    if (payload === '1b') {
+    	    	say('You heard a noise coming out from the depths of the island, you want to...').then(() => {sendButton('A: Check it out \nB: Ignore the noise and keep resting', [{title: 'A', payload: '2c'}, {title: 'B', payload: '2d'}]);
+    	    	});
+    }
+
+
+	    //from 1a
+	    if (payload === '2a') {	
+    		sendButton('You spent the whole morning searching but you found nothing useful', [{title: 'Continue', payload: '2h'}]);                    
+                  
+    }
+	    if (payload === '2b') {	
+    		say('You gathered up the coconuts and try to open it.').then(() => {sendButton('A: Use you hand to break it open\nB: Find rocks to break it open', [{title: 'A', payload: '2e'}, {title: 'B', payload: '2f'}]);
+    	    	});
+    }
+
+	    //from 1b
+	    if (payload === '2c') {	
+    say(['As you go deeper into the island, the light fades as you enter the deep unknown jungle. The surrounding suddenly turned unusually dark and quiet, as if the lights and sounds have all vanished.', 'The scent of a foul beast lingers in a still air, were no flowers seem to help the uneasy odor. In the dim light you see shadows from the bushes, you barely hear the sound of things moving, but you felt a chill down your spine as if everything is watching your every move. \n\n Now what will you do...']).then(() =>sendButton('A: Go deeper and look for the shadow \nB: Slowly move away from your current location',[{title: 'A', payload: '2g'}, {title: 'B', payload: '2_1h'}]));
+    }
+
+	    if (payload === '2d') {	
+    		say('Something attack you from behind and you did not notice it is coming at you...').then(() => {sendButton('💀THE END. In any unknown place, you should raise your awareness to the surrounding to protect yourselves in any danger💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '1b'}]);
+	});
+    }
+
+	    //from 2b
+	    if (payload === '2e') {	
+    		sendButton('You tried using your hand to break open the coconut. You spent all morning to open the coconut but you barely made a scratch on the surface of it. Eventually, you gave up on the idea of breaking the coconut and wasted the all your energy \n\n\n***You feel very tired***', [{title: 'Continue', payload: '2htired'}]);
+    	    
+    }
+
+	    if (payload === '2f') {	
+    		sendButton('You successfully cracked open up the coconut and drink some the water in it. You also got some coconut meat too.', [{title: 'Continue', payload: '2h'}]);
+    	    
+    }
+
+	    //from 2c
+	    if (payload === '2g') {	
+    		say('A creature leaps out at you and immediately raise its claws and attack you...').then(() => {sendButton('💀THE END. In any unknown place, you should raise your awareness and reduce your curiosity in order to protect yourselves from the danger \n\nAs the saying goes, Curiosity killed the cat💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '2c'}]);
+	});
+    }
+
+	    if (payload === '2_1h') {	
+    		sendButton('You slowly moved away from your current location while being wary of your surroundings. You feel that the presence slowly going away and eventually got back to where you came from', [{title: 'Continue', payload: '2h'}]);
+    	    
+    }
+
+//*************Day 1 Noon*************
+	    if (payload === '2h') {	
+    		say('Day 1 Noon☀️\n\nYou look around and found a unknown berry bushes and the berries🍒 looks really delicious. You...').then(() => {sendButton('A: Avoid the unknown berries and find another food source \nB: Eat the berries', [{title: 'A', payload: '3a'}, {title: 'B', payload: '3b'}]);
+	});
+    }
+
+	    //from 2h
+	    if (payload === '3a') {	
+    		say('You left the unknown berry bushes and continue on your path to search for another food source. Eventually, you stumble upon some berries that you recognize').then(() => {sendButton('A: Eat it now \nB: Save it for later', [{title: 'A', payload: '3c'}, {title: 'B', payload: '3d'}]);          
+    		});        
+    }
+	    
+	    if (payload === '3b') {	
+    		say('you felt very sick after eating the berries. A few hours later, you are unable to wake up and lose consciousness').then(() => {sendButton('💀THE END.  If you find any unknown food source from an unknown place, please do not randomly try them because they might have toxic💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '2h'}]);
+	});
+    }
+
+	    //from 3a
+	    if (payload === '3c') {	
+    		sendButton('You ate all the berries and feel nourished', [{title: 'Continue', payload: '3f'}]);
+    	    
+    }
+
+	    if (payload === '3d') {	
+    		sendButton('You kept some berries to save for later\n\n\n***You got some edible berries***', [{title: 'Continue', payload: '3fberry'}]);
+    	        //keepBerry = true;
+    }
+
+//*************Day 1 Noon (Tired Route)*************
+
+	    if (payload === '2htired') {	
+    		say('Day 1 Noon☀️\n\nYou look around and found a unknown berry bushes and the berries🍒 looks really delicious. You...').then(() => {sendButton('A: Avoid the unknown berries and find another food source \nB: Eat the berries', [{title: 'A', payload: '3atired'}, {title: 'B', payload: '3btired'}]);
+	});
+    }
+
+	    //from 2htired
+	    if (payload === '3atired') {	
+    		say('You left the unknown berry bushes and continue on your path to search for another food source. Eventually, you stumble upon some berries that you recognize').then(() => {sendButton('A: Eat it now \nB: Save it for later', [{title: 'A', payload: '3ctired'}, {title: 'B', payload: '3dtired'}]);          
+    		});        
+    }
+	    
+	    if (payload === '3btired') {	
+    		say('you felt very sick after eating the berries. A few hours later, you are unable to wake up and lose consciousness').then(() => {sendButton('💀THE END.  If you find any unknown food source from an unknown place, please do not randomly try them because they might have toxic💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '2htired'}]);
+	});
+    }
+
+	    //from 3atired
+	    if (payload === '3ctired') {	
+    		sendButton('You ate all the berries and feel nourished', [{title: 'Continue', payload: '3ftired'}]);
+    	    
+    }
+
+	    if (payload === '3dtired') {	
+    		sendButton('You kept some berries to save for later\n\n\n***You got some edible berries***', [{title: 'Continue', payload: '3ftired'}]);
+    	       
+    }
+
+//*************Day 1 Night (Tired Route)*************
+
+	    if (payload === '3ftired') {		
+    		say('Day 1 Night🌙\n\nThe day begins to set and you feel really tired after wasting your energy opening the coconut. You slowly doze off into a deep slumber. The night breeze dropped into freezing level and your body starts to loose its temperature.').then(() => {sendButton('💀THE END. It is better to not waste energy in useless task without prioritizing the necessities to fight against the nature💀', [{title: 'Restart the game', payload: 'restart'}]);
+		});	    		
+    }
+
+
+//*************Day 1 Night*************
+	    if (payload === '3f') {
+			say('Day 1 Night🌙\n\nThe day begins to set. The night breeze dropped into freezing level and you start to feel cold, you ...').then(() => {sendButton('A: Make a fire \nB: Build a shelter', [{title: 'A', payload: '4a'}, {title: 'B', payload: '4b'}]);
+	});	   		
+    }
+
+	    //from 3f
+	    if (payload === '4a') {	
+    		sendButton('You warmth yourself and slept beside the fire', [{title: 'Continue', payload: '4c'}]);
+    	    
+    }
+
+	    if (payload === '4b') {	
+    		say('It takes you a whole night to build a shelter but you cannot build it properly. The night winds gets colder and colder. Without a shelter or fire, you slowly loses your body temperature. and fell into a deep slumber.').then(() => {sendButton('💀THE END.  If you get sick at unknown place and without any survival skill, you are basically ruined💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '3f'}]);
+	});
+    }
+
+
+//*************Berry route*************
+	    if (payload === '3fberry') {
+			say('Day 1 Night🌙\n\nThe day begins to set. The night breeze dropped into freezing level and you start to feel cold, you ...').then(() => {sendButton('A: Make a fire \nB: Build a shelter', [{title: 'A', payload: '4aberry'}, {title: 'B', payload: '4bberry'}]);
+	});	   		
+    }
+
+	    //from 3fberry
+	    if (payload === '4aberry') {	
+    		sendButton('You warmth yourself and slept beside the fire', [{title: 'Continue', payload: '4cberry'}]);
+    	    
+    }
+
+	    if (payload === '4bberry') {	
+    		say('It takes you a whole night to build it and you still cannot build it successfully').then(() => {sendButton('💀THE END.  If you get sick at unknown place and without any survival skill, you are basically ruined💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '3fberry'}]);
+	});
+    }
+
+	    //from 3f
+	    if (payload === '4cberry') {	
+    		say('Day 2 Morning🌅\n\nYou have woken up to another day on deserted island and live for another day. You decided to continue on investigate the island and discovered a small hut from the other side of the island. ').then(() => {sendButton('A: Ignore the hut \nB: Visit the hut', [{title: 'A', payload: '5a'}, {title: 'B', payload: '5bberry'}]);
+	});
+    }
+
+	    if (payload === '5bberry') {
+		
+    		say('You decided to move closer to the hut and saw a person siting in front of the hut. The man spoke but you did not understand what he was saying. The man looked really hungry and it seems like he was asking whether you have food to share. You remembered that you have picked some berries from yesterday\'s excursion and decided to...').then(() => {sendButton('A: Give him the berries \nB: Give him nothing', [{title: 'A', payload: '5c'}, {title: 'B', payload: '5d'}]);
+	});
+}
+
+//*************Day 2 Morning*************
+
+	    //from 3f
+	    if (payload === '4c') {	
+    		say('Day 2 Morning🌅\n\nYou have woken up to another day on deserted island and live for another day. You decided to continue on investigate the island and discovered a small hut from the other side of the island. ').then(() => {sendButton('A: Ignore the hut \nB: Visit the hut', [{title: 'A', payload: '5a'}, {title: 'B', payload: '5b'}]);
+	});
+    }
+	    //from 4c
+	    if (payload === '5a') {	
+    		sendButton('You went past the hut and returned to your own camp', [{title: 'Continue', payload: '5e'}]);      
+    }
+	    
+	    if (payload === '5b') {
+		say('You decided to move closer to the hut and saw a person siting in front of the hut. The man spoke but you did not understand what he was saying. The man looked really hungry and it seems like he was asking whether you have food to share.').then(() => {sendButton('Unfortunately, you do not have any food as well given that you trying to survive on the island. You decided to... ', [{title: 'Give him nothing', payload: '5d'}]);
+	});	
+    }
+
+	    //from 5bberry
+	    if (payload === '5c') {	
+    		sendButton('You gave the man some berries you collected yesterday. The man devoured the berries within seconds and shows a face full of satisfaction. The man is thankful for your kind gesture and gave you something in return. You carried the gift back to your camp.\n\n\n***You got bamboos***', [{title: 'Continue', payload: '5ebamboo'}]); 
+		//getBamboo = true;     
+    }
+
+	    //from 5b or 5bberry
+	    if (payload === '5d') {	
+    		sendButton('You shook your head to the man to convey that you got nothing for him. The man gets angry and kicks you away. You decided to returned to your own camp', [{title: 'Continue', payload: '5e'}]);      
+    }
+
+
+//*************Bamboo Route**************
+	    if (payload === '5ebamboo') {	
+    		say('Day 2 Noon☀️\n\nOn your way back to your camp, you came upon a broken boat. You came up with an idea to build a boat to escape from the island and you...').then(() => {sendButton('A: Use the bamboo to build a bamboo raft\nB: Try to fix the boat with the broken pieces of the boat and twigs', [{title: 'A', payload: '6a'}, {title: 'B', payload: '6b'}]);
+	});
+}
+
+//*************Day 2 Noon*************
+
+	    if (payload === '5e') {	
+		
+		sendButton('Day 2 Noon☀️\n\nOn your way back to your camp, you came upon a broken boat. You came up with an idea to build a boat to escape from the island and you...', [{title: 'Try to fix the boat', payload: '6b'}]);
+}
+
+	    //from 5e
+	    if (payload === '6a') {	
+    		sendButton('You spend the whole afternoon in building the bamboo raft', [{title: 'Continue', payload: '6cboat'}]);
+    }
+
+	    if (payload === '6b') {	
+    		sendButton('You spend the whole afternoon in fix it but have not finished yet', [{title: 'Continue', payload: '6c'}]);
+    }
+
+//*************Boat Route*************
+	    if (payload === '6cboat') {	
+    		say('Day 2 Night🌙\n\nYou decided to make a rescue signs, you ...').then(() => {sendButton('A: Use some scattered stone to make "SOS"\nB: Use some wood sticks and lay down on the beach', [{title: 'A', payload: '7aboat'}, {title: 'B', payload: '7bboat'}]);
+	});
+}
+	    //from 6cboat
+	    if (payload === '7aboat') {	
+    		sendButton('After you finished placing the stones, you went to back to your camp to end the day. A sudden gust blew through the "SOS" sign but nothing happened to the sign', [{title: 'Continue', payload: '7cboat'}]);
+    	    
+    }
+
+	    if (payload === '7bboat') {	
+    		sendButton('After you finished placing the sticks, you went to back to your camp to end the day. A sudden gust blew the sign away \n\n\nTips: Maybe use some better material to build the sign', [{title: 'Continue', payload: '7cboat'}]);
+    }
+
+
+
+//*************Day 3 Morning(Boat Route)*************
+
+	    if (payload === '7cboat') {	
+    		say('Day 3 Morning🌅\n\nThe sun rises to another day on the deserted island. You felt a cold and scaly sensation brushes across your skin. Hissing sounds could be heard right near your ears. You opened your eyes to see numerous poisonous snakes has wandered to your sleeping area. As the snake crept closer to you. You...').then(() => {sendButton('A: Stay calm and slowly walk away\nB: Immediately move away and scream at the snake to scare it away', [{title: 'A', payload: '8aboat'}, {title: 'B', payload: '8bboat'}]);
+	});
+}
+
+	    //from 7cboat
+	    if (payload === '8aboat') {	
+    		sendButton('You calmly moved away from the snakes and slowly avoid the provoking them. You successfully moved away from the vicinity and went to a safer place', [{title: 'Continue', payload: '8cboat'}]);
+    	    
+    }
+
+	    if (payload === '8bboat') {	
+    		say('You screamed at the top of your lungs hoping to scare the snake away but your sudden movement and loud noise provoked one of the snake instead and it bit you.\n\nYou got poisoned.').then(() => {sendButton('💀THE END.  When you are in close proximity to a snake, do not make sudden movement or loud sound as to not surprise the snake or you will get bitten💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '7cboat'}]);
+	});
+    }
+
+
+//*************Day 3 Noon(Boat Route)*************
+	    if (payload === '8cboat') {	
+    		say('Day 3 Noon☀️ \n\nAfter moving away from the snakes, You heard an unnatural sound came from the distant ocean. A familiar sound of machinery and you saw a man-made transportation moving in the distant. This may be your last chance to escape from the deserted island. \n\nWhat will you do?').then(() => {sendButton('A: You quickly make a smoke signal\nB: You learned from some survival movie that yelling would get their attention', [{title: 'A', payload: '9aboat'}, {title: 'B', payload: '9bboat'}]);
+	});
+}
+
+ if (payload === '9aboat') {	
+    		say('With the smoke signal rises to the air. The ship notices the smoke and signals back. You felt relieved that the ship reached the island and you were rescued.').then(() => {sendButton('Congratulation!!! \n\nYou SUCCESSFULLY ESCAPED from the island. Good Job!', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8cboat'}]);
+	});
+}
+
+if (payload === '9bboat') {
+    		say('You yelled at the top of your lungs to catch the attention of incoming cruise ship. You remembered you have built the bamboo raft and start to row your way to the ship. The closer you get to the ship, one of the passenger noticed you and immediately called for help. You felt relieved that someone was able get help to rescue you.').then(() => {sendButton('Congratulation!!! \n\nYou SUCCESSFULLY ESCAPED from the island. Good Job!', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8cboat'}]);
+	});
+
+}
+
+
+//*************Day 2 Night*************
+
+	    if (payload === '6c') {	
+    		say('Day 2 Night🌙\n\nYou decided to make a rescue signs, you ...').then(() => {sendButton('A: Use some scattered stone to make "SOS"\nB: Use some wood sticks and lay down on the beach', [{title: 'A', payload: '7a'}, {title: 'B', payload: '7b'}]);
+	});
+}
+
+	    //from 6c
+	    if (payload === '7a') {	
+    		sendButton('After you finished placing the stones, you went to back to your camp to end the day. A sudden gust blew through the "SOS" sign but nothing happened to the sign', [{title: 'Continue', payload: '7csign'}]);
+    }
+
+	    if (payload === '7b') {	
+    		sendButton('After you finished placing the sticks, you went to back to your camp to end the day. A sudden gust blew the sign away \n\n\nTips: Maybe use some better material to build the sign', [{title: 'Continue', payload: '7c'}]);
+    }
+
+
+//*************Signal Route*************
+	    if (payload === '7csign') {	
+    		say('Day 3 Morning🌅\n\nThe sun rises to another day on the deserted island. You felt a cold and scaly sensation brushes across your skin. Hissing sounds could be heard right near your ears. You opened your eyes to see numerous poisonous snakes has wandered to your sleeping area. As the snake crept closer to you. You...').then(() => {sendButton('A: Stay calm and slowly walk away\nB: Immediately move away and scream at the snake to scare it away', [{title: 'A', payload: '8asign'}, {title: 'B', payload: '8bsign'}]);
+	});
+}
+
+	    //from 7csign
+	    if (payload === '8asign') {	
+    		sendButton('You calmly moved away from the snakes and slowly avoid the provoking them. You successfully moved away from the vicinity and went to a safer place', [{title: 'Continue', payload: '8csign'}]);
+    }
+
+	    if (payload === '8bsign') {	
+    		say('You screamed at the top of your lungs hoping to scare the snake away but your sudden movement and loud noise provoked one of the snake instead and it bit you.\n\nYou got poisoned.').then(() => {sendButton('💀THE END.  When you are in close proximity to a snake, do not make sudden movement or loud sound as to not surprise the snake or you will get bitten💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '7csign'}]);
+	});
+    }
+
+
+//*************Day 3 Noon (Signal Route)*************
+	    if (payload === '8csign') {	
+    		say('Day 3 Noon☀️ \n\nAfter moving away from snakes, You heard an unnatural sound came from the distant ocean. A familiar sound of machinery and you saw a man-made transportation moving in the distant.This may be your last chance to escape from the deserted island. \n\nWhat will you do?').then(() => {sendButton('A: You quickly make a smoke signal\nB: You learned from some survival movie that yelling would get their attention', [{title: 'A', payload: '9a'}, {title: 'B', payload: '9bsign'}]);
+	});
+}
+
+ if (payload === '9asign') {	
+    		say('With the smoke signal rises to the air. The ship notices the smoke and signals back. You felt relieved that the ship reached the island and you were rescued.').then(() => {sendButton('Congratulation!!! \n\nYou SUCCESSFULLY ESCAPED from the island. Good Job!', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8csign'}]);
+	});
+}
+
+if (payload === '9bsign') {
+    		say('You yelled at the top of your lungs to catch the attention of incoming plane. The rescue plane saw your carefully placed "SOS" signal and circled around to land on the island. You felt relieved that the "SOS" sign managed to catch the attention of the pilot.').then(() => {sendButton('Congratulation!!! \n\nYou SUCCESSFULLY ESCAPED from the island. Good Job!', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8csign'}]);
+	});
+}
+
+//*************Day 3 Morning*************
+
+	    if (payload === '7c') {	
+    		say('Day 3 Morning🌅\n\nThe sun rises to another day on the deserted island. You felt a cold and scaly sensation brushes across your skin. Hissing sounds could be heard right near your ears. You opened your eyes to see numerous poisonous snakes has wandered to your sleeping area. As the snake crept closer to you. You...').then(() => {sendButton('A: Stay calm and slowly walk away\nB: Immediately move away and scream at the snake to scare it away', [{title: 'A', payload: '8a'}, {title: 'B', payload: '8b'}]);
+	});
+}
+
+	    //from 7c
+	    if (payload === '8a') {	
+    		sendButton('You calmly moved away from the snakes and slowly avoid the provoking them. You successfully moved away from the vicinity and went to a safer place', [{title: 'Continue', payload: '8c'}]);
+    }
+
+	    if (payload === '8b') {	
+    		say('You screamed at the top of your lungs hoping to scare the snake away but your sudden movement and loud noise provoked one of the snake instead and it bit you.\n\nYou got poisoned.').then(() => {sendButton('💀THE END.  When you are in close proximity to a snake, do not make sudden movement or loud sound as to not surprise the snake or you will get bitten💀', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '7c'}]);
+	});
+    }
+
+
+//*************Day 3 Noon*************
+	    if (payload === '8c') {	
+    		say('Day 3 Noon☀️ \n\nAfter moving away from snakes, You heard an unnatural sound came from the distant ocean. A familiar sound of machinery and you saw a man-made transportation moving in the distant.This may be your last chance to escape from the deserted island. \n\nWhat will you do?').then(() => {sendButton('A: You quickly make a smoke signal\nB: You learned from some survival movie that yelling would get their attention', [{title: 'A', payload: '9a'}, {title: 'B', payload: '9b'}]);
+	});
+}
+
+ if (payload === '9a') {	
+    		say('With the smoke signal rises to the air. The ship notices the smoke and signals back. You felt relieved that the ship reached the island and you were rescued.').then(() => {sendButton('Congratulation!!! \n\nYou SUCCESSFULLY ESCAPED from the island. Good Job!', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8c'}]);
+	});
+}
+
+if (payload === '9b') {
+		    say('You yelled at the top of your lungs to catch the attention of the incoming ship. You scream to the ship hoping to get rescued. Unfortunately, the ship passed by, not noticing your cry for help.').then(() => {sendButton('You lost your chance to ESCAPE from the island and you are stuck at this island for your entire life. \n\nBAD END', [{title: 'Restart the game', payload: 'restart'}, {title: 'Back to previous choice', payload: '8c'}]);
+	});
+}
+	        
+	    
+};
+
+
+
+module.exports = {
+	filename: 'helloworld',
+	title: 'Survival Island RPG',
+	introduction: [
+		'Welcome to Survival Island ️RPG! 🏝️\n\nIn this game, you have to survive through 3 days in order to let the rescue boat to find you. Every decision you make in certain scenarios will affect the outcome of the story. \n\nCan you survive alone in this island?'
+	],
+	start: start,
+	state: state
+};
